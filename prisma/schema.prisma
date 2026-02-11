@@ -1,0 +1,40 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "linux-musl-arm64-openssl-3.0.x"]
+    output = "/home/ubuntu/showcase_rag_google_drive/nextjs_space/node_modules/.prisma/client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Document {
+  id        String   @id @default(cuid())
+  name      String
+  path      String   @unique
+  fileType  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  chunks    Chunk[]
+}
+
+model Chunk {
+  id          String   @id @default(cuid())
+  documentId  String
+  document    Document @relation(fields: [documentId], references: [id], onDelete: Cascade)
+  pageNumber  Int
+  content     String   @db.Text
+  embedding   String   @db.Text // JSON array of floats
+  createdAt   DateTime @default(now())
+
+  @@index([documentId])
+}
+
+model ChatMessage {
+  id        String   @id @default(cuid())
+  role      String   // 'user' or 'assistant'
+  content   String   @db.Text
+  citations String?  @db.Text // JSON array of citations
+  createdAt DateTime @default(now())
+}
