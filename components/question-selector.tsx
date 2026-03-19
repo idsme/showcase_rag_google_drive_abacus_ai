@@ -93,15 +93,15 @@ export default function QuestionSelector() {
   return (
     <div className="space-y-6">
       {/* Questions Section */}
-      <div className="bg-slate-900/50 rounded-xl border border-slate-700/50 overflow-hidden">
-        <div className="px-6 py-4 bg-gradient-to-r from-indigo-900/50 to-purple-900/50 border-b border-slate-700/50">
+      <div className="bg-bv-surface-alt rounded-lg border border-bv-border overflow-hidden">
+        <div className="px-6 py-4 bg-bv-accent border-b border-bv-border">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-indigo-500/20 rounded-lg">
-              <BookOpen className="w-5 h-5 text-indigo-400" />
+            <div className="p-2 bg-white/20 rounded-lg">
+              <BookOpen className="w-5 h-5 text-bv-text-inverse" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">Solution Architecture Vragen</h3>
-              <p className="text-xs text-slate-400">Selecteer en pas vragen aan voor het rapport</p>
+              <h3 className="font-semibold text-bv-text-inverse">Solution Architecture Vragen</h3>
+              <p className="text-xs text-bv-text-inverse/70">Selecteer en pas vragen aan voor het rapport</p>
             </div>
           </div>
         </div>
@@ -115,8 +115,8 @@ export default function QuestionSelector() {
               transition={{ delay: index * 0.05 }}
               className={`flex items-start gap-3 p-3 rounded-lg transition-all ${
                 question?.selected 
-                  ? 'bg-indigo-900/30 border border-indigo-500/30' 
-                  : 'bg-slate-800/30 border border-slate-700/30 hover:bg-slate-800/50'
+                  ? 'bg-bv-accent/10 border border-bv-accent/30' 
+                  : 'bg-bv-surface border border-bv-border hover:bg-bv-surface-hover'
               }`}
             >
               <button
@@ -124,22 +124,22 @@ export default function QuestionSelector() {
                 className="flex-shrink-0 mt-1"
               >
                 {question?.selected ? (
-                  <CheckSquare className="w-5 h-5 text-indigo-400" />
+                  <CheckSquare className="w-5 h-5 text-bv-accent" />
                 ) : (
-                  <Square className="w-5 h-5 text-slate-500" />
+                  <Square className="w-5 h-5 text-bv-text-muted" />
                 )}
               </button>
               
               <div className="flex-1">
                 <div className="flex items-center gap-2 mb-1">
-                  <span className="text-xs font-medium text-slate-500">Vraag {index + 1}</span>
-                  <Edit3 className="w-3 h-3 text-slate-500" />
+                  <span className="text-xs font-medium text-bv-text-muted">Vraag {index + 1}</span>
+                  <Edit3 className="w-3 h-3 text-bv-text-muted" />
                 </div>
                 <input
                   type="text"
                   value={question?.text ?? ''}
                   onChange={(e) => updateQuestion(question?.id ?? '', e?.target?.value ?? '')}
-                  className="w-full bg-transparent text-white text-sm focus:outline-none focus:ring-1 focus:ring-indigo-500/50 rounded px-2 py-1 -ml-2"
+                  className="w-full bg-transparent text-bv-text text-sm focus:outline-none focus:ring-1 focus:ring-bv-accent/50 rounded px-2 py-1 -ml-2"
                 />
               </div>
             </motion.div>
@@ -150,7 +150,7 @@ export default function QuestionSelector() {
           <button
             onClick={generateReport}
             disabled={isGenerating || (selectedQuestions?.length ?? 0) === 0}
-            className="w-full py-3 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 disabled:from-slate-700 disabled:to-slate-700 text-white font-medium rounded-lg transition-all flex items-center justify-center gap-2"
+            className="w-full py-3 bg-bv-accent hover:bg-bv-accent-hover disabled:opacity-50 text-bv-text-inverse font-medium rounded-lg transition-all flex items-center justify-center gap-2"
           >
             {isGenerating ? (
               <><Loader2 className="w-5 h-5 animate-spin" /> Rapport genereren...</>
@@ -168,24 +168,24 @@ export default function QuestionSelector() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
-            className="bg-slate-900/50 rounded-xl border border-slate-700/50 overflow-hidden"
+            className="bg-bv-surface-alt rounded-lg border border-bv-border overflow-hidden"
           >
-            <div className="px-6 py-4 bg-gradient-to-r from-emerald-900/50 to-teal-900/50 border-b border-slate-700/50">
+            <div className="px-6 py-4 bg-bv-accent-subtle border-b border-bv-border">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 bg-emerald-500/20 rounded-lg">
-                    <FileText className="w-5 h-5 text-emerald-400" />
+                  <div className="p-2 bg-bv-success/15 rounded-lg">
+                    <FileText className="w-5 h-5 text-bv-success" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-white">Gegenereerd Rapport</h3>
-                    <p className="text-xs text-slate-400">
+                    <h3 className="font-semibold text-bv-text">Gegenereerd Rapport</h3>
+                    <p className="text-xs text-bv-text-muted">
                       {isGenerating ? 'Bezig met genereren...' : 'Rapport klaar'}
                     </p>
                   </div>
                 </div>
                 <button
                   onClick={() => setShowReport(false)}
-                  className="text-slate-400 hover:text-white text-sm"
+                  className="text-bv-text-muted hover:text-bv-text text-sm"
                 >
                   Sluiten
                 </button>
@@ -193,31 +193,31 @@ export default function QuestionSelector() {
             </div>
             
             <div className="p-6">
-              <div className="prose prose-invert prose-sm max-w-none">
-                <div className="whitespace-pre-wrap text-slate-300">
+              <div className="prose prose-sm max-w-none">
+                <div className="whitespace-pre-wrap text-bv-text">
                   {report || (isGenerating ? 'Laden...' : '')}
                 </div>
               </div>
               
               {/* Citations */}
               {(citations?.length ?? 0) > 0 && (
-                <div className="mt-6 pt-6 border-t border-slate-700/50">
-                  <h4 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <BookOpen className="w-4 h-4 text-emerald-400" />
+                <div className="mt-6 pt-6 border-t border-bv-border">
+                  <h4 className="text-sm font-semibold text-bv-text mb-3 flex items-center gap-2">
+                    <BookOpen className="w-4 h-4 text-bv-accent" />
                     Bronverwijzingen
                   </h4>
                   <div className="space-y-2">
                     {citations?.map((citation, idx) => (
                       <div
                         key={idx}
-                        className="text-xs bg-slate-800/50 rounded-lg p-3 border border-slate-700/30"
+                        className="text-xs bg-bv-surface rounded-lg p-3 border border-bv-border"
                       >
                         <div className="flex items-start gap-2">
-                          <span className="font-semibold text-emerald-400">[Bron {citation?.sourceNumber ?? idx + 1}]</span>
+                          <span className="font-semibold text-bv-accent">[Bron {citation?.sourceNumber ?? idx + 1}]</span>
                           <div>
-                            <p className="text-slate-300">{citation?.documentName ?? 'Unknown'}</p>
-                            <p className="text-slate-500">Pagina {citation?.pageNumber ?? 0}</p>
-                            <p className="text-slate-400 mt-1 italic">"{citation?.snippet ?? ''}"</p>
+                            <p className="text-bv-text">{citation?.documentName ?? 'Unknown'}</p>
+                            <p className="text-bv-text-muted">Pagina {citation?.pageNumber ?? 0}</p>
+                            <p className="text-bv-text-muted mt-1 italic">"{citation?.snippet ?? ''}"</p>
                           </div>
                         </div>
                       </div>

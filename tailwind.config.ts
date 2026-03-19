@@ -20,45 +20,22 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
-        card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
-        },
-        popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
-        },
-        primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-        },
-        secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
-        },
-        muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-        },
-        destructive: {
-          DEFAULT: 'hsl(var(--destructive))',
-          foreground: 'hsl(var(--destructive-foreground))',
-        },
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
+        bv: {
+          surface: 'var(--bv-surface)',
+          'surface-alt': 'var(--bv-surface-alt)',
+          'surface-hover': 'var(--bv-surface-hover)',
+          text: 'var(--bv-text)',
+          'text-inverse': 'var(--bv-text-inverse)',
+          'text-muted': 'var(--bv-text-muted)',
+          accent: 'var(--bv-accent)',
+          'accent-hover': 'var(--bv-accent-hover)',
+          'accent-subtle': 'var(--bv-accent-subtle)',
+          border: 'var(--bv-border)',
+          'border-strong': 'var(--bv-border-strong)',
+          success: 'var(--bv-success)',
+          warning: 'var(--bv-warning)',
+          info: 'var(--bv-info)',
+          error: 'var(--bv-error)',
         },
       },
       keyframes: {

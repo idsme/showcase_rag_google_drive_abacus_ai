@@ -52,23 +52,23 @@ export default function DocumentStatus() {
   };
   
   return (
-    <div className="bg-slate-900/50 rounded-xl border border-slate-700/50 overflow-hidden">
-      <div className="px-6 py-4 bg-gradient-to-r from-amber-900/50 to-orange-900/50 border-b border-slate-700/50">
+    <div className="bg-bv-surface-alt rounded-lg border border-bv-border overflow-hidden">
+      <div className="px-6 py-4 bg-bv-accent border-b border-bv-border">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-amber-500/20 rounded-lg">
-              <FileText className="w-5 h-5 text-amber-400" />
+            <div className="p-2 bg-white/20 rounded-lg">
+              <FileText className="w-5 h-5 text-bv-text-inverse" />
             </div>
             <div>
-              <h3 className="font-semibold text-white">Documenten Status</h3>
-              <p className="text-xs text-slate-400">{documents?.length ?? 0} documenten geïndexeerd</p>
+              <h3 className="font-semibold text-bv-text-inverse">Documenten Status</h3>
+              <p className="text-xs text-bv-text-inverse/70">{documents?.length ?? 0} documenten geïndexeerd</p>
             </div>
           </div>
           
           <button
             onClick={handleIngestAll}
             disabled={isIngesting}
-            className="px-4 py-2 bg-amber-600/20 hover:bg-amber-600/30 text-amber-400 text-sm font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50"
+            className="px-4 py-2 bg-white/15 hover:bg-white/25 text-bv-text-inverse text-sm font-medium rounded-lg transition-colors flex items-center gap-2 disabled:opacity-50"
           >
             {isIngesting ? (
               <Loader2 className="w-4 h-4 animate-spin" />
@@ -83,7 +83,7 @@ export default function DocumentStatus() {
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="mt-2 text-sm text-amber-300"
+            className="mt-2 text-sm text-bv-text-inverse/80"
           >
             {ingestStatus}
           </motion.p>
@@ -93,13 +93,13 @@ export default function DocumentStatus() {
       <div className="p-4">
         {isLoading ? (
           <div className="flex items-center justify-center py-8">
-            <Loader2 className="w-6 h-6 text-slate-400 animate-spin" />
+            <Loader2 className="w-6 h-6 text-bv-text-muted animate-spin" />
           </div>
         ) : (documents?.length ?? 0) === 0 ? (
-          <div className="text-center py-8 text-slate-400">
-            <AlertCircle className="w-8 h-8 mx-auto mb-2 text-amber-500/50" />
+          <div className="text-center py-8 text-bv-text-muted">
+            <AlertCircle className="w-8 h-8 mx-auto mb-2 text-bv-warning/50" />
             <p>Geen documenten geïndexeerd.</p>
-            <p className="text-sm">Klik op "Verwerk Documenten" om te beginnen.</p>
+            <p className="text-sm">Klik op &quot;Verwerk Documenten&quot; om te beginnen.</p>
           </div>
         ) : (
           <div className="space-y-2 max-h-[300px] overflow-y-auto">
@@ -109,12 +109,12 @@ export default function DocumentStatus() {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.05 }}
-                className="flex items-center gap-3 p-3 bg-slate-800/30 rounded-lg"
+                className="flex items-center gap-3 p-3 bg-bv-surface rounded-lg border border-bv-border"
               >
-                <CheckCircle className="w-4 h-4 text-emerald-400 flex-shrink-0" />
+                <CheckCircle className="w-4 h-4 text-bv-success flex-shrink-0" />
                 <div className="flex-1 min-w-0">
-                  <p className="text-sm text-white truncate">{doc?.name ?? 'Unknown'}</p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-sm text-bv-text truncate">{doc?.name ?? 'Unknown'}</p>
+                  <p className="text-xs text-bv-text-muted">
                     {doc?._count?.chunks ?? 0} chunks • {doc?.fileType?.toUpperCase?.() ?? 'UNKNOWN'}
                   </p>
                 </div>

@@ -110,16 +110,16 @@ export default function ChatInterface() {
   };
   
   return (
-    <div className="flex flex-col h-[600px] bg-slate-900/50 rounded-xl border border-slate-700/50 overflow-hidden">
+    <div className="flex flex-col h-[600px] bg-bv-surface-alt rounded-lg border border-bv-border overflow-hidden">
       {/* Header */}
-      <div className="px-6 py-4 bg-gradient-to-r from-blue-900/50 to-teal-900/50 border-b border-slate-700/50">
+      <div className="px-6 py-4 bg-bv-accent border-b border-bv-border">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-teal-500/20 rounded-lg">
-            <Bot className="w-5 h-5 text-teal-400" />
+          <div className="p-2 bg-white/20 rounded-lg">
+            <Bot className="w-5 h-5 text-bv-text-inverse" />
           </div>
           <div>
-            <h3 className="font-semibold text-white">Startup Coach</h3>
-            <p className="text-xs text-slate-400">Vraag me alles over het project</p>
+            <h3 className="font-semibold text-bv-text-inverse">Startup Coach</h3>
+            <p className="text-xs text-bv-text-inverse/70">Vraag me alles over het project</p>
           </div>
         </div>
       </div>
@@ -127,8 +127,8 @@ export default function ChatInterface() {
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-4 space-y-4">
         {(messages?.length ?? 0) === 0 && (
-          <div className="flex flex-col items-center justify-center h-full text-center text-slate-400">
-            <Bot className="w-12 h-12 mb-3 text-teal-500/50" />
+          <div className="flex flex-col items-center justify-center h-full text-center text-bv-text-muted">
+            <Bot className="w-12 h-12 mb-3 text-bv-accent/50" />
             <p>Welkom! Stel een vraag over de projectdocumenten.</p>
           </div>
         )}
@@ -143,16 +143,16 @@ export default function ChatInterface() {
               className={`flex gap-3 ${message?.role === 'user' ? 'justify-end' : 'justify-start'}`}
             >
               {message?.role === 'assistant' && (
-                <div className="flex-shrink-0 p-2 bg-teal-500/20 rounded-lg h-fit">
-                  <Bot className="w-4 h-4 text-teal-400" />
+                <div className="flex-shrink-0 p-2 bg-bv-accent/15 rounded-lg h-fit">
+                  <Bot className="w-4 h-4 text-bv-accent" />
                 </div>
               )}
               
               <div className={`max-w-[80%] ${message?.role === 'user' ? 'order-first' : ''}`}>
-                <div className={`rounded-xl px-4 py-3 ${
+                <div className={`rounded-lg px-4 py-3 ${
                   message?.role === 'user' 
-                    ? 'bg-blue-600 text-white' 
-                    : 'bg-slate-800 text-slate-200'
+                    ? 'bg-bv-accent text-bv-text-inverse' 
+                    : 'bg-bv-surface border border-bv-border text-bv-text'
                 }`}>
                   <p className="whitespace-pre-wrap text-sm">{message?.content || (isLoading ? '...' : '')}</p>
                 </div>
@@ -160,14 +160,14 @@ export default function ChatInterface() {
                 {/* Citations */}
                 {message?.role === 'assistant' && (message?.citations?.length ?? 0) > 0 && (
                   <div className="mt-2 space-y-1">
-                    <p className="text-xs text-slate-500 flex items-center gap-1">
+                    <p className="text-xs text-bv-text-muted flex items-center gap-1">
                       <FileText className="w-3 h-3" /> Bronnen:
                     </p>
                     <div className="flex flex-wrap gap-1">
                       {message?.citations?.map((citation, idx) => (
                         <span 
                           key={idx}
-                          className="text-xs bg-slate-800/80 text-teal-400 px-2 py-1 rounded-md"
+                          className="text-xs bg-bv-surface border border-bv-border text-bv-accent px-2 py-1 rounded"
                           title={citation?.snippet ?? ''}
                         >
                           {citation?.documentName?.slice(0, 30) ?? 'Unknown'}... (p.{citation?.pageNumber ?? 0})
@@ -179,8 +179,8 @@ export default function ChatInterface() {
               </div>
               
               {message?.role === 'user' && (
-                <div className="flex-shrink-0 p-2 bg-blue-600/20 rounded-lg h-fit">
-                  <User className="w-4 h-4 text-blue-400" />
+                <div className="flex-shrink-0 p-2 bg-bv-accent/15 rounded-lg h-fit">
+                  <User className="w-4 h-4 text-bv-accent" />
                 </div>
               )}
             </motion.div>
@@ -191,20 +191,20 @@ export default function ChatInterface() {
       </div>
       
       {/* Input */}
-      <form onSubmit={handleSubmit} className="p-4 border-t border-slate-700/50">
+      <form onSubmit={handleSubmit} className="p-4 border-t border-bv-border">
         <div className="flex gap-2">
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e?.target?.value ?? '')}
             placeholder="Stel een vraag over het project..."
-            className="flex-1 bg-slate-800/50 border border-slate-700 rounded-lg px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-teal-500/50 focus:border-teal-500"
+            className="flex-1 bg-bv-surface border border-bv-border rounded-lg px-4 py-3 text-bv-text placeholder:text-bv-text-muted focus:outline-none focus:ring-2 focus:ring-bv-accent/50 focus:border-bv-accent"
             disabled={isLoading}
           />
           <button
             type="submit"
             disabled={isLoading || !input?.trim()}
-            className="px-4 py-3 bg-teal-600 hover:bg-teal-500 disabled:bg-slate-700 disabled:text-slate-500 text-white rounded-lg transition-colors flex items-center gap-2"
+            className="px-4 py-3 bg-bv-accent hover:bg-bv-accent-hover disabled:opacity-50 text-bv-text-inverse rounded-lg transition-colors flex items-center gap-2"
           >
             {isLoading ? <Loader2 className="w-5 h-5 animate-spin" /> : <Send className="w-5 h-5" />}
           </button>
